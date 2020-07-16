@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>进程死锁 | 个人空间</title><meta name="description" content="思维导图 导语进程进行过程中 尤其是是并发进程中容易出现一种情况 那就是死锁。死锁是很危险得一种清空，会导致系统中得其他进程无法进行 长时间地进行等待而无法运行。这里就简单讲讲死锁是什么，为什么产生，如何避免死锁，以及如何解除死锁   是什么两个进程乃至多个进程互相竞争资源，某些进程进入无限期等待的情况 为什么原因主要用两点：资源少，推进顺序不当。 资源问题例子一:平安夜夜晚，超市中只有一个苹果正"><meta name="keywords" content="操作系统"><meta name="author" content="Didi"><meta name="copyright" content="Didi"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ldity.github.io/2020/04/13/OS/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%973--%E8%BF%9B%E7%A8%8B%E6%AD%BB%E9%94%81/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="进程死锁"><meta property="og:url" content="https://ldity.github.io/2020/04/13/OS/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0%E7%B3%BB%E5%88%973--%E8%BF%9B%E7%A8%8B%E6%AD%BB%E9%94%81/"><meta property="og:site_name" content="个人空间"><meta property="og:description" content="思维导图 导语进程进行过程中 尤其是是并发进程中容易出现一种情况 那就是死锁。死锁是很危险得一种清空，会导致系统中得其他进程无法进行 长时间地进行等待而无法运行。这里就简单讲讲死锁是什么，为什么产生，如何避免死锁，以及如何解除死锁   是什么两个进程乃至多个进程互相竞争资源，某些进程进入无限期等待的情况 为什么原因主要用两点：资源少，推进顺序不当。 资源问题例子一:平安夜夜晚，超市中只有一个苹果正"><meta property="og:image" content="https://gitee.com/Ldity/image/raw/master/img/20200716105739.jpg"><meta property="article:published_time" content="2020-04-12T16:00:00.000Z"><meta property="article:modified_time" content="2020-04-15T07:17:59.515Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="序言" href="https://ldity.github.io/2020/04/15/Life/%E5%88%9D%E5%BF%83/"><link rel="next" title="python的基本语法" href="https://ldity.github.io/2020/04/09/Python/%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E8%AF%AD%E5%8F%A5/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-04-15 15:17:59'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://gitee.com/Ldity/image/raw/master/img/20200702135143.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">101</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 生平</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#思维导图"><span class="toc-number">1.</span> <span class="toc-text">思维导图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导语"><span class="toc-number">2.</span> <span class="toc-text">导语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#是什么"><span class="toc-number">3.</span> <span class="toc-text">是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为什么"><span class="toc-number">4.</span> <span class="toc-text">为什么</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#资源问题"><span class="toc-number">4.1.</span> <span class="toc-text">资源问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#推进顺序问题"><span class="toc-number">4.2.</span> <span class="toc-text">推进顺序问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#怎么预防"><span class="toc-number">5.</span> <span class="toc-text">怎么预防</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#破坏占有且等待条件"><span class="toc-number">5.1.</span> <span class="toc-text">破坏占有且等待条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#破坏不可剥夺条件"><span class="toc-number">5.2.</span> <span class="toc-text">破坏不可剥夺条件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#破坏循环等待条件"><span class="toc-number">5.3.</span> <span class="toc-text">破坏循环等待条件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#怎么避免"><span class="toc-number">6.</span> <span class="toc-text">怎么避免</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安全状态"><span class="toc-number">6.1.</span> <span class="toc-text">安全状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#银行家算法"><span class="toc-number">6.2.</span> <span class="toc-text">银行家算法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#数据结构"><span class="toc-number">6.2.1.</span> <span class="toc-text">数据结构</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安全性算法"><span class="toc-number">6.3.</span> <span class="toc-text">安全性算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#银行家算法举例"><span class="toc-number">6.4.</span> <span class="toc-text">银行家算法举例</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#视频"><span class="toc-number">7.</span> <span class="toc-text">视频</span></a></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://gitee.com/Ldity/image/raw/master/img/20200716105739.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">个人空间</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 生平</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">进程死锁</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-04-13 00:00:00"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-04-13</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-04-15 15:17:59"><i class="fas fa-history fa-fw"></i> 更新于 2020-04-15</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%B3%BB%E5%88%97/">操作系统系列</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h3 id="思维导图"><a href="#思维导图" class="headerlink" title="思维导图"></a>思维导图</h3><p><img src= "/img/loading.gif" data-src="https://res.cloudinary.com/drldihlua/image/upload/v1586852539/%E8%BF%9B%E7%A8%8B%E6%AD%BB%E9%94%81.svg" alt="进程死锁思维导图"></p>
+<h3 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h3><p>进程进行过程中 尤其是是并发进程中容易出现一种情况 那就是死锁。死锁是很危险得一种清空，会导致系统中得其他进程无法进行 长时间地进行等待而无法运行。这里就简单讲讲死锁是什么，为什么产生，如何避免死锁，以及如何解除死锁</p>
+<a id="more"></a>
+
+<h3 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h3><p>两个进程乃至多个进程互相竞争资源，某些进程进入无限期等待的情况</p>
+<h3 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h3><p>原因主要用两点：资源少，推进顺序不当。</p>
+<h4 id="资源问题"><a href="#资源问题" class="headerlink" title="资源问题"></a>资源问题</h4><p><span id ="inline-blue">例子一:</span>平安夜夜晚，超市中只有一个苹果正在售卖，现在有两个人同时需要这一个苹果送给女友。如果A获得了苹果 ，那么B就没有苹果，不可以送给女友 ，就是等死状态（进程死锁）。这种就类似之前所说得资源不足得情况了。如果超市有两个苹果，那么这种情况就不会出现了。</p>
+<p><span id = "inline-red">注意:</span> 这里面就已经隐含了关于资源得一点介绍。对了，就是苹果是可消耗得，所以资源又分可消耗和不可消耗得。现在换了一个思路，不是苹果了。而是水杯呢？</p>
+<p><span id = "inline-blue">例子二</span> 两个人同时需要喝水，超市也一样只有一个杯子，如果A先喝完水之后，再给B用，那么也就不会出现死锁了。这里得水杯就是不可消耗资源，也叫可重用资源.</p>
+<p><span id = "inline-red">注意:</span> 这里也一样包含了一个隐含条件，就是A如果喝完之后 不给B用了。那B岂不是GG了，你想计算机中 进程完成时一定要释放资源得了，不怕他不给。但是如果A喝完之后 还在运行呢，那怎么办？那岂不是一直要等待了。所以这里面同样包含了可剥夺和不可剥夺得资源得限制了。以及还有相应得推进顺序问题。具体情况 看视频。这里就不花那么多时间解释了。简单提一下：可剥夺，类似计算机中得CPU，进程运行时可剥夺。不可剥夺，类似打印机，打印到一半不可停止得那种，为不可剥夺。</p>
+<h4 id="推进顺序问题"><a href="#推进顺序问题" class="headerlink" title="推进顺序问题"></a>推进顺序问题</h4><p><span id = "inline-bule">例子三</span>：进程A 需要一个打印机得资源 和 一个输入得资源。</p>
+<p>进程B 需要一个打印机和 键盘资源。</p>
+<p>系统中 只有一个打印的资源 一个输入得资源。</p>
+<p>进程A 先获得输入资源 再得到打印机资源 A完成 释放所占有得资源。进程B完成。</p>
+<p>A获得打印机 B获得输入资源 两者同时等待下一个资源。这种情况就会产生死锁</p>
+<h3 id="怎么预防"><a href="#怎么预防" class="headerlink" title="怎么预防"></a>怎么预防</h3><p>预防得最好办法就是将系统得那些必要条件中断一个以上便可以了。但是互斥条件是不可以破坏得，一旦破坏，系统会出现数据错误等各种不可控因素。</p>
+<h4 id="破坏占有且等待条件"><a href="#破坏占有且等待条件" class="headerlink" title="破坏占有且等待条件"></a>破坏占有且等待条件</h4><p>有两个解决办法，第一个便是在进程一开始时便分配了全部执行过程中需要的资源。<span id = "inline-green">好处？</span> <span id = "inline-red">缺点？ </span></p>
+<p>第二个便是在系统之中动态分配资源。原有的旧资源释放之后 才分配新资源，此时进程可以运行</p>
+<h4 id="破坏不可剥夺条件"><a href="#破坏不可剥夺条件" class="headerlink" title="破坏不可剥夺条件"></a>破坏不可剥夺条件</h4><p>与破坏占有且等待条件类似，设定进程如果占有旧资源且需要新资源的时候，如果新资源求不得，那么系统会剥夺这些资源 给其他进程使用。而原先的进程，必须要同时得到以前得新资源和原先得旧有资源，进程才能继续执行。</p>
+<h4 id="破坏循环等待条件"><a href="#破坏循环等待条件" class="headerlink" title="破坏循环等待条件"></a>破坏循环等待条件</h4><p>按照计算机得资源进行资源序号分配。根据大部分进程使用得资源顺序确定进程序号。使用了进程序号大的资源，不允许再申请序号小的资源了。</p>
+<h3 id="怎么避免"><a href="#怎么避免" class="headerlink" title="怎么避免"></a>怎么避免</h3><h4 id="安全状态"><a href="#安全状态" class="headerlink" title="安全状态"></a>安全状态</h4><p>安全状态定义；设系统中有N个进程，存在一个进程序列&lt;P1,P2,P3,..Pi….Pn&gt;使得进程Pi（i=1,2,3…n),以后还需要的资源可以通过系统现有的空闲资源加上所有Pj(j&lt;i)进程已占有的资源来满足，则称此时系统处于安全状态，进程序列&lt;P1,P2,P3,…Pn&gt;称为安全序列。</p>
+<h4 id="银行家算法"><a href="#银行家算法" class="headerlink" title="银行家算法"></a>银行家算法</h4><h5 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h5><p>可利用资源向量Avaliable：系统中当前可用各类资源数目</p>
+<p>最大需求矩阵Max：进程在执行过程中的需要各类资源的最大总数</p>
+<p>分配矩阵：Allocation: 进程已经得到了一定各类的资源</p>
+<p>需求矩阵：Need。进程还需要多少个资源才能完成。数目等于Max - Allocation</p>
+<h4 id="安全性算法"><a href="#安全性算法" class="headerlink" title="安全性算法"></a>安全性算法</h4><p>用于判断是否处于系统是否处于安全状态。</p>
+<p>很简单得一种思想。这个安全性算法其实就一个循环加判断而已。会看刚才得数据结构，里面有最大需求矩阵Max，和Available可用资源向量，和Need矩阵。</p>
+<p>第一步，从进程序列中找到一个没有完成得进程，且此进程得所请求得资源数目Work &lt;= Need矩阵</p>
+<p>第二步，尝试修改Avaliable资源向量，也就是给此进程分配资源。然后释放掉此进程，获取此进程中所有资源数加上原先剩下得资源，判断下一个进程能否继续类似如此执行，如果进程序列中每一个进程都可以执行，那就是处于安全状态，否则就是不安全状态</p>
+<p>详解可以看这里：</p>
+<img src= "/img/loading.gif" data-src="https://raw.githubusercontent.com/LDity/Images/master/All_photos/20200414161032.jpg" alt="安全性算法" style="zoom:50%;" />
+
+<h4 id="银行家算法举例"><a href="#银行家算法举例" class="headerlink" title="银行家算法举例"></a>银行家算法举例</h4><p><span id ="inline-blue">例子四</span>  </p>
+<p><img src= "/img/loading.gif" data-src="https://raw.githubusercontent.com/LDity/Images/master/All_photos/20200414161812.jpg" alt="例子四"></p>
+<p><span id = "inline-green">例子四解答</span></p>
+<img src= "/img/loading.gif" data-src="https://raw.githubusercontent.com/LDity/Images/master/All_photos/20200414161835.jpg" alt="例子四解答1" style="zoom:80%;" />
+
+
+
+<h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><iframe width="560" height="315" src="https://www.youtube.com/embed/B97lq5hm00k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/Ldity/image/raw/master/img/20200716145152.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/04/15/Life/%E5%88%9D%E5%BF%83/"><img class="prev-cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145133.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">序言</div></div></a></div><div class="next-post pull-right"><a href="/2020/04/09/Python/%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E8%AF%AD%E5%8F%A5/"><img class="next-cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145133.png" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">python的基本语法</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/03/02/OS/操作系统笔记系列1--进程控制/" title="进程控制笔记"><img class="relatedPosts_cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716122119.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-02</div><div class="relatedPosts_title">进程控制笔记</div></div></a></div><div class="relatedPosts_item"><a href="/2020/03/11/OS/操作系统笔记系列2--进程同步/" title="进程同步"><img class="relatedPosts_cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145133.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-03-11</div><div class="relatedPosts_title">进程同步</div></div></a></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Didi</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script></body></html>

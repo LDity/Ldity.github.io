@@ -83,7 +83,7 @@ h4,
 h5,
 h6 {
   position: relative;
-  margin: 1rem 0 0.7rem;
+  margin: 1rem 0 0.7em;
   color: #344c67;
   font-weight: bold;
 }
@@ -389,6 +389,24 @@ canvas:not(#ribbon-canvas),
   -o-animation: tocsidebarRtoL 0.7s;
   -ms-animation: tocsidebarRtoL 0.7s;
   animation: tocsidebarRtoL 0.7s;
+}
+h1 {
+  font-size: 1.4rem;
+}
+h2 {
+  font-size: 1.25rem;
+  text-align: center;
+}
+h3 {
+  font-size: 1.1rem;
+  text-align: center;
+  font-style: italic;
+}
+h4 {
+  font-size: 0.9rem;
+}
+h5 {
+  font-size: 0.8rem;
 }
 @-moz-keyframes scroll-down-effect {
   0% {

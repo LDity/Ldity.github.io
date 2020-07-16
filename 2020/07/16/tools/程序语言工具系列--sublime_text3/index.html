@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>sublime text3 的小操作 | 个人空间</title><meta name="description" content="[TOC] sublime line 中文输出乱码解决方案： 在原先更换的编译的系统文件中，如Tools–&gt;Bulid system-&gt;New Buliding System,确定编译文件所在地，然后打开他，在最后一行增加&quot;encoding&quot;: &quot;cp936&quot;即可 我的系统原先在C:\Users\Ceaser\AppData\Roaming\Su"><meta name="author" content="Didi"><meta name="copyright" content="Didi"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ldity.github.io/2020/07/16/tools/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E7%B3%BB%E5%88%97--sublime_text3/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="sublime text3 的小操作"><meta property="og:url" content="https://ldity.github.io/2020/07/16/tools/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E7%B3%BB%E5%88%97--sublime_text3/"><meta property="og:site_name" content="个人空间"><meta property="og:description" content="[TOC] sublime line 中文输出乱码解决方案： 在原先更换的编译的系统文件中，如Tools–&gt;Bulid system-&gt;New Buliding System,确定编译文件所在地，然后打开他，在最后一行增加&quot;encoding&quot;: &quot;cp936&quot;即可 我的系统原先在C:\Users\Ceaser\AppData\Roaming\Su"><meta property="og:image" content="https://gitee.com/Ldity/image/raw/master/img/20200716145133.png"><meta property="article:published_time" content="2020-07-16T07:09:33.734Z"><meta property="article:modified_time" content="2020-04-15T08:31:33.855Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="Vimuim" href="https://ldity.github.io/2020/07/16/tools/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E7%B3%BB%E5%88%97--vimuim/"><link rel="next" title="Adobe系列软件破解" href="https://ldity.github.io/2020/07/16/tools/%E7%A0%B4%E8%A7%A3%E5%B7%A5%E5%85%B7%E7%B3%BB%E5%88%972--Adobe%E7%B3%BB%E5%88%97%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-04-15 16:31:33'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://gitee.com/Ldity/image/raw/master/img/20200702135143.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">101</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 生平</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#sublime-line-中文输出乱码"><span class="toc-number">1.</span> <span class="toc-text">sublime line 中文输出乱码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sublime-text3-python代码自动补全"><span class="toc-number">2.</span> <span class="toc-text">Sublime text3 python代码自动补全</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装SublimeCodeInte"><span class="toc-number">2.1.</span> <span class="toc-text">安装SublimeCodeInte</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置"><span class="toc-number">2.2.</span> <span class="toc-text">配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置快捷键"><span class="toc-number">2.3.</span> <span class="toc-text">配置快捷键</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ctrl-鼠标左键跳转函数"><span class="toc-number">2.4.</span> <span class="toc-text">ctrl+鼠标左键跳转函数</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://gitee.com/Ldity/image/raw/master/img/20200716145133.png)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">个人空间</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 生平</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">sublime text3 的小操作</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-07-16 15:09:33"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-07-16</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-04-15 16:31:33"><i class="fas fa-history fa-fw"></i> 更新于 2020-04-15</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E7%B3%BB%E5%88%97/">程序语言工具系列</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><p>[TOC]</p>
+<h3 id="sublime-line-中文输出乱码"><a href="#sublime-line-中文输出乱码" class="headerlink" title="sublime line 中文输出乱码"></a>sublime line 中文输出乱码</h3><p>解决方案：</p>
+<p>在原先更换的编译的系统文件中，如Tools–&gt;Bulid system-&gt;New Buliding System,确定编译文件所在地，然后打开他，在最后一行增加<code>&quot;encoding&quot;: &quot;cp936&quot;</code>即可</p>
+<p>我的系统原先在C:\Users\Ceaser\AppData\Roaming\Sublime Text 3\Packages\User这个目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;cmd&quot;: [&quot;H:&#x2F;Anaconda&#x2F;envs&#x2F;tensorflow-gpu&#x2F;python.exe&quot;, &quot;-u&quot;, &quot;$file&quot;],</span><br><span class="line">    &quot;file_regex&quot;: &quot;^[ ]*File \&quot;(...*?)\&quot;, line ([0-9]*)&quot;,</span><br><span class="line">    &quot;selector&quot;: &quot;source.pythona&quot;,</span><br><span class="line">    &quot;encoding&quot;: &quot;cp936&quot; &#x2F;&#x2F;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h3 id="Sublime-text3-python代码自动补全"><a href="#Sublime-text3-python代码自动补全" class="headerlink" title="Sublime text3 python代码自动补全"></a>Sublime text3 python代码自动补全</h3><p>Sublime text3 有一定的代码补全能力 但是相较Pycharm来说差了许多，查不多类似于notepad++.但是相较pycharm来说 更喜欢Sublime text3的UI，所以使用Sublime text中提供的插件来进行一定的更改，使其也能自动补全</p>
+<p>网络上的博客有好有坏 我总结了自己可以成功的一种方式</p>
+<h4 id="安装SublimeCodeInte"><a href="#安装SublimeCodeInte" class="headerlink" title="安装SublimeCodeInte"></a>安装SublimeCodeInte</h4><p>1 由 Tools -&gt; Command Palette 打开 Sublime 命令面板（快捷键 Ctrl+Shift+P）。</p>
+<p>2 输入 install，选择 Package Control: Install Package，稍等以获取最新的 Package 列表。</p>
+<p>可能会出现的一种bug ，国内很可能会出现的BUG，不要问，问就是墙</p>
+<pre><code>报错:Package Control  There are no packages available for installation  Please see                                  https://packagecontrol.io/docs/troubleshooting for help</code></pre><p>​<br> 解决:有的网络不会报错,若报错了,就直接百度一下就好,很多教程(你若有翻墙的,就一定不会报错)</p>
+<p>3 选择 SublimeCodeIntel 安装（如果使用下载包进行安装，那算了，别安装了，后面的事情你肯定做不成功</p>
+<p>4 <font color = red>利用pip 安装好自己本地环境python中的sublimeCodeiInte(重要！！！）</font>输入以下命令进行安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install codeintel</span><br></pre></td></tr></table></figure>
+
+<!--more-->
+
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>选择 Perference-Package Settings-SublimeCodeIntel,复制以下配置到Settings-User</p>
+<p>我的配置内容:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;codeintel_language_settings&quot;: &#123;</span><br><span class="line">        &quot;Python3&quot;: &#123;</span><br><span class="line">            &quot;python3&quot;: &quot;H:\\Anaconda\\envs\\tensorflow-gpu\\python.exe&quot;,</span><br><span class="line">            &quot;codeintel_scan_extra_dir&quot;: [</span><br><span class="line">                &quot;&quot;,</span><br><span class="line">                &quot;H:\\Anaconda\\envs\\tensorflow-gpu\\python36.zip&quot;, </span><br><span class="line">                &quot;H:\\Anaconda\\envs\\tensorflow-gpu\\DLLs&quot;, </span><br><span class="line">                &quot;H:\\Anaconda\\envs\\tensorflow-gpu\\lib&quot;, </span><br><span class="line">                &quot;H:\\Anaconda\\envs\\tensorflow-gpu&quot;, </span><br><span class="line">                &quot;C:\\Users\\Ceaser\\AppData\\Roaming\\Python\\Python36\\site-packages&quot;, </span><br><span class="line">                &quot;C:\\Users\\Ceaser\\AppData\\Roaming\\Python\\Python36\\site-packages\\win32&quot;, </span><br><span class="line">                &quot;C:\\Users\\Ceaser\\AppData\\Roaming\\Python\\Python36\\site-packages\\win32\\lib&quot;, </span><br><span class="line">                &quot;C:\\Users\\Ceaser\\AppData\\Roaming\\Python\\Python36\\site-packages\\Pythonwin&quot;, </span><br><span class="line">                &quot;H:\\Anaconda\\envs\\tensorflow-gpu\\lib\\site-packages&quot;</span><br><span class="line">            ],</span><br><span class="line">            &quot;codeintel_scan_files_in_project&quot;: true,</span><br><span class="line">            &quot;codeintel_selected_catalogs&quot;: []</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果不知道那个codeintel_scan_extra_dir的</p>
+<p>开一个python 脚本窗口，输入以下命令，看最后的输出</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">sys.path</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置快捷键"><a href="#配置快捷键" class="headerlink" title="配置快捷键"></a>配置快捷键</h4><p>选择 Perference  -&gt;  Package Settings　-&gt;　SublimeCodeIntel　-&gt;　Key Bindings-User　复制以下配置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;keys&quot;: [&quot;f5&quot;],</span><br><span class="line">        &quot;caption&quot;: &quot;SublimeREPL:Python&quot;,</span><br><span class="line">        &quot;command&quot;: &quot;run_existing_window_command&quot;, &quot;args&quot;:</span><br><span class="line">        &#123;</span><br><span class="line">            &quot;id&quot;: &quot;repl_python_run&quot;,</span><br><span class="line">            &quot;file&quot;: &quot;config&#x2F;Python&#x2F;Main.sublime-menu&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F;自动提示代码</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;keys&quot;: [&quot;ctrl+j&quot;],</span><br><span class="line">        &quot;command&quot;: &quot;code_intel_auto_complete&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F;跳转到函数定义</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;keys&quot;: [&quot;alt+right&quot;],</span><br><span class="line">        &quot;command&quot;: &quot;goto_python_definition&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &#x2F;&#x2F;返回到跳转位置</span><br><span class="line">    &#123;</span><br><span class="line">        &quot;keys&quot;: [&quot;alt+left&quot;],</span><br><span class="line">        &quot;command&quot;: &quot;back_to_python_definition&quot;</span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>注:我是用ctrl + J 这个自动提示代码键方便用哦<br>参考链接：<a href="https://blog.csdn.net/wto882dim/article/details/99904305" target="_blank" rel="noopener">https://blog.csdn.net/wto882dim/article/details/99904305</a></p>
+<h4 id="ctrl-鼠标左键跳转函数"><a href="#ctrl-鼠标左键跳转函数" class="headerlink" title="ctrl+鼠标左键跳转函数"></a>ctrl+鼠标左键跳转函数</h4><p>选择 Perference　　-&gt;　　Package Settings　　-&gt;　　SublimeCodeIntel　　-&gt;　　Mouse Bindings - User　　复制以下配置:　</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">        &#x2F;&#x2F;ctrl+鼠标左键跳转函数</span><br><span class="line">        &#123; </span><br><span class="line">            &quot;button&quot;: &quot;button1&quot;, </span><br><span class="line">            &quot;modifiers&quot;: [&quot;ctrl&quot;], </span><br><span class="line">            &quot;command&quot;: &quot;goto_python_definition&quot;, </span><br><span class="line">            &quot;press_command&quot;: &quot;drag_select&quot;</span><br><span class="line">        &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+
+<p>来到这里,你就试着能不能代码自动补全!! 退出sublime text  重新打开(重启)</p>
+<p><strong>应该是不行的哦!!</strong></p>
+<p><strong>重点来了!重点来了!重点来了!重点来了!重点来了!重点来了!</strong><br>进入:<a href="https://github.com/srusskih/SublimeJEDI/blob/master/Completion%20Rules.tmPreferences" target="_blank" rel="noopener">https://github.com/srusskih/SublimeJEDI/blob/master/Completion%20Rules.tmPreferences</a></p>
+<p>1, 把 Completion Rules.tmPreferences的代码保存在同名(Completion Rules.tmPreferences文件,其中有一个空格哦,不能少的) …/Sublime Text 3/Packages/Python文件夹中，若Python 没有就创建。</p>
+<p>2, 可能需要删除文件夹 …/Sublime Text 3/Cache 和文件 …/Sublime Text 3/Local/Session.sublime_session，并重启 Sublime Text 后才能生效。</p>
+<p>激动人心的时刻到了</p>
+<p>退出sublime text  重新打开(重启)</p>
+<p>打开一个.py文件,试一试,tab键能不能代码自动补全和ctrl + j 代码提示!</p>
+</div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/Ldity/image/raw/master/img/20200716145152.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/16/tools/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%E5%B7%A5%E5%85%B7%E7%B3%BB%E5%88%97--vimuim/"><img class="prev-cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145152.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Vimuim</div></div></a></div><div class="next-post pull-right"><a href="/2020/07/16/tools/%E7%A0%B4%E8%A7%A3%E5%B7%A5%E5%85%B7%E7%B3%BB%E5%88%972--Adobe%E7%B3%BB%E5%88%97%E8%BD%AF%E4%BB%B6%E7%A0%B4%E8%A7%A3/"><img class="next-cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145152.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Adobe系列软件破解</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Didi</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script></body></html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>文件和流 | 个人空间</title><meta name="description" content="Java中对文件的读取是以为流为单位的，对不同的设备在读取写入操作上是一样，不必关心具体的设备细节，实现跨平台。 所以一般来说，对文件名的读取写入，建议使用相对路径。   文件目录管理使用java.io.File类对文件进行操作，操作的对象可以是文件，也可以是目录。 1File file &#x3D; new File(&quot;Data.txt&quot;);  创建了File对象，表示当前目录下的文件Data.txt."><meta name="keywords" content="java"><meta name="author" content="Didi"><meta name="copyright" content="Didi"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ldity.github.io/2020/07/11/Java/%E6%96%87%E4%BB%B6%E5%92%8C%E6%B5%81/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="文件和流"><meta property="og:url" content="https://ldity.github.io/2020/07/11/Java/%E6%96%87%E4%BB%B6%E5%92%8C%E6%B5%81/"><meta property="og:site_name" content="个人空间"><meta property="og:description" content="Java中对文件的读取是以为流为单位的，对不同的设备在读取写入操作上是一样，不必关心具体的设备细节，实现跨平台。 所以一般来说，对文件名的读取写入，建议使用相对路径。   文件目录管理使用java.io.File类对文件进行操作，操作的对象可以是文件，也可以是目录。 1File file &#x3D; new File(&quot;Data.txt&quot;);  创建了File对象，表示当前目录下的文件Data.txt."><meta property="og:image" content="https://gitee.com/Ldity/image/raw/master/img/20200716145212.jpg"><meta property="article:published_time" content="2020-07-11T07:13:20.694Z"><meta property="article:modified_time" content="2020-07-11T12:23:04.619Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="Java第一部分总结" href="https://ldity.github.io/2020/07/13/Java/Java%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%E6%80%BB%E7%BB%93/"><link rel="next" title="异常处理" href="https://ldity.github.io/2020/07/11/Java/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-07-11 20:23:04'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://gitee.com/Ldity/image/raw/master/img/20200702135143.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">101</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 生平</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件目录管理"><span class="toc-number">1.</span> <span class="toc-text">文件目录管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常用方法"><span class="toc-number">1.1.</span> <span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件字节流"><span class="toc-number">2.</span> <span class="toc-text">文件字节流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#字节输入流"><span class="toc-number">2.1.</span> <span class="toc-text">字节输入流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字节输出流"><span class="toc-number">2.2.</span> <span class="toc-text">字节输出流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类FilterInputStream和FilterOutputStream"><span class="toc-number">2.3.</span> <span class="toc-text">类FilterInputStream和FilterOutputStream</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件字符流"><span class="toc-number">3.</span> <span class="toc-text">文件字符流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件随机访问"><span class="toc-number">4.</span> <span class="toc-text">文件随机访问</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常用方法-1"><span class="toc-number">4.1.</span> <span class="toc-text">常用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#标准I-O"><span class="toc-number">5.</span> <span class="toc-text">标准I&#x2F;O</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类Scanner"><span class="toc-number">6.</span> <span class="toc-text">类Scanner</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象化和序列化"><span class="toc-number">7.</span> <span class="toc-text">对象化和序列化</span></a></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://gitee.com/Ldity/image/raw/master/img/20200716145212.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">个人空间</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 生平</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">文件和流</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-07-11 15:13:20"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-07-11</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-07-11 20:23:04"><i class="fas fa-history fa-fw"></i> 更新于 2020-07-11</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/Java%E7%B3%BB%E5%88%97/">Java系列</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><p><img src= "/img/loading.gif" data-src="https://gitee.com/Ldity/image/raw/master/img/20200711202220.svg" alt="文件和流"></p>
+<p>Java中对文件的读取是以为流为单位的，对不同的设备在读取写入操作上是一样，不必关心具体的设备细节，实现跨平台。</p>
+<p>所以一般来说，对文件名的读取写入，建议使用相对路径。</p>
+<a id="more"></a>
+
+<h2 id="文件目录管理"><a href="#文件目录管理" class="headerlink" title="文件目录管理"></a>文件目录管理</h2><p>使用java.io.File类对文件进行操作，操作的对象可以是文件，也可以是目录。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File file = <span class="keyword">new</span> File(<span class="string">"Data.txt"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>创建了File对象，表示当前目录下的文件Data.txt.</p>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canRead</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canWrite</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>; <span class="comment">//返回当前的File对象表示的文件或者目录名</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">length</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isFile</span><span class="params">()</span></span>; <span class="comment">//判断当前的File对象表示的是否是一个已存在的文件</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isDirectory</span><span class="params">()</span></span>; <span class="comment">//判断当前的File对象是否是一个已存在的目录</span></span><br></pre></td></tr></table></figure>
+
+<p>一般来说，这个就是文件和目录的打开</p>
+<h2 id="文件字节流"><a href="#文件字节流" class="headerlink" title="文件字节流"></a>文件字节流</h2><p>主要有两个类 InputStream 和 OutputStream,分别控制了字节流的输入和输出</p>
+<h3 id="字节输入流"><a href="#字节输入流" class="headerlink" title="字节输入流"></a>字节输入流</h3><p>所有表示字节流的类都派生自抽象类java.io.InputStream。包括</p>
+<p>java.io.FileInputStream 表示文件字节输入流</p>
+<p>java.io.ByteArrayInputStream 表示 字节数组输入流，可从指定内存缓冲区中读取字节</p>
+<p>java.io.FilterInputStream 用于过滤字节输入流</p>
+<p>部分方法如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">(<span class="keyword">byte</span>[] b)</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="字节输出流"><a href="#字节输出流" class="headerlink" title="字节输出流"></a>字节输出流</h3><p>所有表示字节流的类都派生自抽象类java.io.OutputStream。包括</p>
+<p>java.io.FileOutputStream 表示文件字节输出流</p>
+<p>java.io.ByteArrayOutputStream 表示 字节数组输出流，可从指定内存缓冲区中写入字节</p>
+<p>java.io.FilterOutputStream用于过滤字节输出流</p>
+<p>部分方法如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">int</span> <span class="title">write</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">write</span><span class="params">(<span class="keyword">byte</span>[] b)</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">flush</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>; <span class="comment">//刷新当前输出流，并强制写出所有缓冲的输出字节</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">close</span><span class="params">()</span> <span class="keyword">throws</span> IOException</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="类FilterInputStream和FilterOutputStream"><a href="#类FilterInputStream和FilterOutputStream" class="headerlink" title="类FilterInputStream和FilterOutputStream"></a>类FilterInputStream和FilterOutputStream</h3><p>以指定数据类型为单位，需要使用类FilterInputStream（过滤输入流)和FilterOutputStream（过滤输出流）.</p>
+<p>两者分别延生出 </p>
+<p>DataInputStream  </p>
+<p>BufferedInputStream</p>
+<p>DataOutputStream   输出的格式是二进制文件</p>
+<p>BufferedOutputStream  </p>
+<p>PrintStream 格式化输出各种数据值，输出数据可以以文本方式阅读</p>
+<h2 id="文件字符流"><a href="#文件字符流" class="headerlink" title="文件字符流"></a>文件字符流</h2><p>InputStream 和 OutputStream 只支持8位字符流，不能使用16位的Unicode字符。</p>
+<p>添加支持字符流的 java.io.Reader 和 java.io.Writer.</p>
+<p>其中得子类和方法大概与对应得InputStream 和 OutputStream  对应</p>
+<h2 id="文件随机访问"><a href="#文件随机访问" class="headerlink" title="文件随机访问"></a>文件随机访问</h2><p>之前的文件都是只能顺序读访问，使用java中的 java.io.RamdomAccessFile类可以进行访问</p>
+<p>两个构造方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RandomAccessFile(File file,String mode)</span><br><span class="line">RandomAccessFile(String name, String mode)</span><br></pre></td></tr></table></figure>
+
+<p>第一个参数指定需要访问的文件，第二个参数指定访问模式。比较常用的两个模式是 ‘r’ 和 ‘rw’.</p>
+<h3 id="常用方法-1"><a href="#常用方法-1" class="headerlink" title="常用方法"></a>常用方法</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">seek</span><span class="params">(<span class="keyword">long</span> pos)</span> <span class="keyword">throws</span> IOException</span>;</span><br><span class="line"><span class="comment">// 将偏移设置到距离文件开始的pos个字节的位置，下一次读写将在偏移位置进行。打开文件时，当前偏移在文件开始位置，在文件中读写数据时，偏移位置相应向前移动</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getFilePointer</span><span class="params">()</span> <span class="keyword">throws</span> IOEXception</span></span><br><span class="line"><span class="function">    <span class="comment">//返回当前偏移的字节值</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="标准I-O"><a href="#标准I-O" class="headerlink" title="标准I/O"></a>标准I/O</h2><p>System.in 标准输入流 InputStream 的对象，直接使用它只能读入字节数据</p>
+<p>System.out 标准输出流 PrintStream 对象</p>
+<p>System.err 标准错误输出流 </p>
+<p>readLine 从控制台中窗口读入一行文本字符串</p>
+<h2 id="类Scanner"><a href="#类Scanner" class="headerlink" title="类Scanner"></a>类Scanner</h2><p>创建Scanner类对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Scanner scanner = <span class="keyword">new</span> Scannr(System.in)</span><br></pre></td></tr></table></figure>
+
+<p>从指定的文本文件中读取字符串</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Scanner scanner = <span class="keyword">new</span> Scanner(<span class="keyword">new</span> File(<span class="string">"data.txt"</span>))</span><br></pre></td></tr></table></figure>
+
+<p>常用方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">nextLine</span><span class="params">()</span></span>;</span><br><span class="line"><span class="comment">//返回并跳过输入信息当前行的其余部分</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">next</span><span class="params">()</span></span>;</span><br><span class="line"><span class="comment">// 查找并返回来自当前scanner 对象的下一个完整标记</span></span><br></pre></td></tr></table></figure>
+
+<p>Scanner 用于分割标志的分隔符时空白字符</p>
+<h2 id="对象化和序列化"><a href="#对象化和序列化" class="headerlink" title="对象化和序列化"></a>对象化和序列化</h2><p>ObjectOutputStream 时 OutputStream 所有的子类，并且继承了其中的所有方法。而且将指定对象写入当前流。</p>
+</div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/Ldity/image/raw/master/img/20200716145152.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/13/Java/Java%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86%E6%80%BB%E7%BB%93/"><img class="prev-cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145212.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Java第一部分总结</div></div></a></div><div class="next-post pull-right"><a href="/2020/07/11/Java/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"><img class="next-cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145152.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">异常处理</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/06/30/Java/基础语法/" title="基础语法"><img class="relatedPosts_cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145152.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-30</div><div class="relatedPosts_title">基础语法</div></div></a></div><div class="relatedPosts_item"><a href="/2020/06/30/Java/Array/" title="Array"><img class="relatedPosts_cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145133.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-30</div><div class="relatedPosts_title">Array</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/04/Java/Java数组/" title="Java数组"><img class="relatedPosts_cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145133.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-04</div><div class="relatedPosts_title">Java数组</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/13/Java/Java第一部分总结/" title="Java第一部分总结"><img class="relatedPosts_cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145212.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-13</div><div class="relatedPosts_title">Java第一部分总结</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/04/Java/Object类/" title="Object类"><img class="relatedPosts_cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716122119.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-04</div><div class="relatedPosts_title">Object类</div></div></a></div><div class="relatedPosts_item"><a href="/2020/06/30/Java/This/" title="关键字This"><img class="relatedPosts_cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145133.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-30</div><div class="relatedPosts_title">关键字This</div></div></a></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Didi</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script></body></html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Next7.2主题的一些修改 | 个人空间</title><meta name="description" content="导语所有问题均按照问题，详细问题，问题分析，结局方案给出等样式进行分析与解答     问题一：如何使用段落首行缩进详细问题：新版的Next主题 怎么设置首行缩进， 问题分析：旧版可以通过修改有custom.styl文件来修改文件的内容，而官方文档中里面写道有下面的话，但是我还是无法设置缩进  注意，在修改配置选项时，不要更改配置的缩进； 目前，NexT 的所有配置都采用2 空格的缩进；  解决方式"><meta name="keywords" content="博客搭建"><meta name="author" content="Didi"><meta name="copyright" content="Didi"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ldity.github.io/2020/07/16/tools/%E5%8D%9A%E5%AE%A2%E4%BF%AE%E6%94%B9%E7%B3%BB%E5%88%971--next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="Next7.2主题的一些修改"><meta property="og:url" content="https://ldity.github.io/2020/07/16/tools/%E5%8D%9A%E5%AE%A2%E4%BF%AE%E6%94%B9%E7%B3%BB%E5%88%971--next%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/"><meta property="og:site_name" content="个人空间"><meta property="og:description" content="导语所有问题均按照问题，详细问题，问题分析，结局方案给出等样式进行分析与解答     问题一：如何使用段落首行缩进详细问题：新版的Next主题 怎么设置首行缩进， 问题分析：旧版可以通过修改有custom.styl文件来修改文件的内容，而官方文档中里面写道有下面的话，但是我还是无法设置缩进  注意，在修改配置选项时，不要更改配置的缩进； 目前，NexT 的所有配置都采用2 空格的缩进；  解决方式"><meta property="og:image" content="https://gitee.com/Ldity/image/raw/master/img/20200716145212.jpg"><meta property="article:published_time" content="2020-07-16T07:09:33.597Z"><meta property="article:modified_time" content="2020-07-16T07:29:20.554Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="使用图床存储图片" href="https://ldity.github.io/2020/07/16/tools/%E5%8D%9A%E5%AE%A2%E4%BF%AE%E6%94%B9%E7%B3%BB%E5%88%972--%E4%BD%BF%E7%94%A8%E5%9B%BE%E5%BA%8A/"><link rel="next" title="用的顺手的软件" href="https://ldity.github.io/2020/07/16/tools/window%E5%B7%A5%E5%85%B7%E7%B3%BB%E5%88%972--%E7%94%A8%E7%9A%84%E9%A1%BA%E6%89%8B%E7%9A%84%E8%BD%AF%E4%BB%B6/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-07-16 15:29:20'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"><link rel="stylesheet" href="\assets\css\APlayer.min.css" class="aplayer-style-marker">
+<script src="\assets\js\APlayer.min.js" class="aplayer-script-marker"></script>
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://gitee.com/Ldity/image/raw/master/img/20200702135143.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">101</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 生平</span></a></div></div></div></div><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#导语"><span class="toc-number">1.</span> <span class="toc-text">导语</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题一：如何使用段落首行缩进"><span class="toc-number">1.1.</span> <span class="toc-text">问题一：如何使用段落首行缩进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题二：如何在next中设置深色模式："><span class="toc-number">1.2.</span> <span class="toc-text">问题二：如何在next中设置深色模式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题三：如何在Next中使用阅读全文"><span class="toc-number">1.3.</span> <span class="toc-text">问题三：如何在Next中使用阅读全文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题四：如何渲染图片以及实现滑动切换图片"><span class="toc-number">1.4.</span> <span class="toc-text">问题四：如何渲染图片以及实现滑动切换图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题五：开启标签云功能"><span class="toc-number">1.5.</span> <span class="toc-text">问题五：开启标签云功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题六：多张相片并排显示"><span class="toc-number">1.6.</span> <span class="toc-text">问题六：多张相片并排显示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题七：修改底部标签样式"><span class="toc-number">1.7.</span> <span class="toc-text">问题七：修改底部标签样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题八：添加站点运行时间"><span class="toc-number">1.8.</span> <span class="toc-text">问题八：添加站点运行时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题九：文章加密访问"><span class="toc-number">1.9.</span> <span class="toc-text">问题九：文章加密访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题10：文字增加背景色块"><span class="toc-number">1.10.</span> <span class="toc-text">问题10：文字增加背景色块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题11：编辑-index-md-组织专题目录"><span class="toc-number">1.11.</span> <span class="toc-text">问题11：编辑 index.md 组织专题目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题12-：修改Next里面的字体"><span class="toc-number">1.12.</span> <span class="toc-text">问题12 ：修改Next里面的字体</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题13：添加音乐"><span class="toc-number">1.13.</span> <span class="toc-text">问题13：添加音乐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题14：文章阴影和分割线"><span class="toc-number">1.14.</span> <span class="toc-text">问题14：文章阴影和分割线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题15：设定文章在首页隐藏"><span class="toc-number">1.15.</span> <span class="toc-text">问题15：设定文章在首页隐藏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题16：添加文件夹在首页"><span class="toc-number">1.16.</span> <span class="toc-text">问题16：添加文件夹在首页</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题17：针对问题4进行的优化"><span class="toc-number">1.17.</span> <span class="toc-text">问题17：针对问题4进行的优化</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://gitee.com/Ldity/image/raw/master/img/20200716145212.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">个人空间</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 生平</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">Next7.2主题的一些修改</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-07-16 15:09:33"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-07-16</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-07-16 15:29:20"><i class="fas fa-history fa-fw"></i> 更新于 2020-07-16</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E7%B3%BB%E5%88%97/">博客搭建系列</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h2><p>所有问题均按照问题，详细问题，问题分析，结局方案给出等样式进行分析与解答</p>
+  <a id="more"></a>
+
+<h3 id="问题一：如何使用段落首行缩进"><a href="#问题一：如何使用段落首行缩进" class="headerlink" title="问题一：如何使用段落首行缩进"></a>问题一：如何使用段落首行缩进</h3><p><strong>详细问题</strong>：新版的Next主题 怎么设置首行缩进，</p>
+<p><strong>问题分析：</strong>旧版可以通过修改有<code>custom.styl</code>文件来修改文件的内容，而官方文档中里面写道有下面的话，但是我还是无法设置缩进</p>
+<blockquote>
+<p>注意，在修改配置选项时，<strong>不要更改配置的缩进</strong>；</p>
+<p>目前，NexT 的所有配置都采用<strong>2 空格的缩进</strong>；</p>
+</blockquote>
+<p><strong>解决方式：</strong></p>
+<p>在配置文件中，取消 <code>custom_file_path.postBodyEnd</code> 前的注释：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">custom_file_path:</span><br><span class="line">	style: source/_data/styles.styl</span><br></pre></td></tr></table></figure>
+<!--more-->
+<p>在 <strong>Hexo 根目录</strong>下，进入（若不存在则创建）<code>source/_data</code> 目录，在该目录下创建 <code>styles.styl</code> 文件。</p>
+<p>在此文件中，写入如下内容：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.post-body p &#123; text-indent: <span class="number">2</span>em; &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="问题二：如何在next中设置深色模式："><a href="#问题二：如何在next中设置深色模式：" class="headerlink" title="问题二：如何在next中设置深色模式："></a>问题二：如何在next中设置深色模式：</h3><p><strong>详细问题：</strong>如何设置深色模式？</p>
+<p><strong>问题分析：</strong></p>
+<p><strong>解决方式：</strong>7.7.2 版本中，NexT主题加入了新功能 Dark Mode。在配置文件中设置<code>darkmode: true</code>，并在支持深色模式的操作系统中，使用支持<code>prefers-color-scheme</code>属性的浏览器，于夜间浏览即可体验</p>
+<h3 id="问题三：如何在Next中使用阅读全文"><a href="#问题三：如何在Next中使用阅读全文" class="headerlink" title="问题三：如何在Next中使用阅读全文"></a>问题三：如何在Next中使用阅读全文</h3><p><strong>详细问题</strong>：略</p>
+<p><strong>问题分析</strong>：略</p>
+<p><strong>解决方式：</strong>三种方式</p>
+<ol>
+<li>在每篇文章如<code>title: Next6.0以上主题配置的那些坑</code>的标题下面增加一个<code>description: 本文所要描述的事情</code></li>
+<li>在文章的你选定的任何部分用<code>&lt;!--more--&gt;</code> 便会从这里开始断开 实现阅读全文</li>
+</ol>
+<h3 id="问题四：如何渲染图片以及实现滑动切换图片"><a href="#问题四：如何渲染图片以及实现滑动切换图片" class="headerlink" title="问题四：如何渲染图片以及实现滑动切换图片"></a>问题四：如何渲染图片以及实现滑动切换图片</h3><p><strong>详细问题：</strong>图片实现上一张和下一种的滑动切换</p>
+<p><strong>问题分析：</strong>实现该功能的基础是在文章中插入图片。该项功能的效果是：点击文中插图，图片能够放大，有幻灯片的效果。目前 NexT 提供了两款插件 fancybox 和 mediumzoom，两款插件开启一个即可。两款插件的效果不同，各有各的特点，我推荐使用 fancybox</p>
+<p><strong>解决方式：</strong></p>
+<p>在主题配置文件中找到以下代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.</span><br><span class="line"># For more information: https://fancyapps.com/fancybox</span><br><span class="line">fancybox: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"># A JavaScript library for zooming images like Medium.</span><br><span class="line"># Do not enable both `fancybox` and `mediumzoom`.</span><br><span class="line"># For more information: https://github.com/francoischalifour/medium-zoom</span><br><span class="line">mediumzoom: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>修改任意一个如<code>fancybox:true</code></p>
+<h3 id="问题五：开启标签云功能"><a href="#问题五：开启标签云功能" class="headerlink" title="问题五：开启标签云功能"></a>问题五：开启标签云功能</h3><p><strong>详细问题</strong>：开启标签功能之后显示标签动起来</p>
+<p><strong>问题分析:</strong></p>
+<p><strong>解决方式</strong>:目前有一个标签云插件可以提供这样的效果：<a href="https://github.com/MikeCoder/hexo-tag-cloud" target="_blank" rel="noopener">hexo-tag-cloud</a>。执行 <code>npm install hexo-tag-cloud --save</code> 进行安装。插件安装完成后，你可以自定义标签云的位置，比如显示在侧栏，或者显示在标签页面。比如选择显示在侧边栏页面，则在 <code>~/themes/next/layout/_macro/sidebar.swig</code> 中，添加如下所示代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;% <span class="keyword">if</span> site.tags.length &gt; <span class="number">1</span> %&#125;</span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span> charset=<span class="string">"utf-8"</span> src=<span class="string">"/js/tagcloud.js"</span>&gt;&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>javascript<span class="string">" charset="</span>utf<span class="number">-8</span><span class="string">" src="</span>/js/tagcanvas.js<span class="string">"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;div class="</span>widget-wrap<span class="string">"&gt;</span></span><br><span class="line"><span class="string">    &lt;h3 class="</span>widget-title<span class="string">"&gt;标签云&lt;/h3&gt;</span></span><br><span class="line"><span class="string">    &lt;div id="</span>myCanvasContainer<span class="string">" class="</span>widget tagcloud<span class="string">"&gt;</span></span><br><span class="line"><span class="string">        &lt;canvas width="</span><span class="number">250</span><span class="string">" height="</span><span class="number">250</span><span class="string">" id="</span>resCanvas<span class="string">" style="</span>width=<span class="number">100</span>%<span class="string">"&gt;</span></span><br><span class="line"><span class="string">            &#123;&#123; list_tags() &#125;&#125;</span></span><br><span class="line"><span class="string">        &lt;/canvas&gt;</span></span><br><span class="line"><span class="string">    &lt;/div&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br><span class="line"><span class="string">&#123;%- endif %&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>注意添加的位置如下所示</p>
+<p><img src= "/img/loading.gif" data-src="https://gitee.com/Ldity/image/raw/master/img/20200630162822.png" alt="image-20200630162733082"></p>
+<h3 id="问题六：多张相片并排显示"><a href="#问题六：多张相片并排显示" class="headerlink" title="问题六：多张相片并排显示"></a>问题六：多张相片并排显示</h3><p><strong>详细问题：</strong> 使用Next 自带的标签功能，完成多张图片的并排显示</p>
+<p><strong>问题分析:</strong></p>
+<p><strong>解决方式:</strong></p>
+<p>其中6表示表示共有多少张图片，2表示一行排布多少张</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% gp <span class="number">6</span><span class="number">-2</span> %&#125;</span><br><span class="line">中间是图片</span><br><span class="line">&#123;% endgp %&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="问题七：修改底部标签样式"><a href="#问题七：修改底部标签样式" class="headerlink" title="问题七：修改底部标签样式"></a>问题七：修改底部标签样式</h3><p><strong>详细问题：</strong> 文章底部标签样式太丑</p>
+<p><strong>问题分析:</strong></p>
+<p><strong>解决方式:</strong>打开模板文件 <code>/themes/next/layout/_macro/post.swig</code>，找到 <code>for tag in post.tags</code> 部分，将 <code>#</code> 换成 ``，如下:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;%- <span class="keyword">for</span> tag <span class="keyword">in</span> post.tags.toArray() %&#125;</span><br><span class="line">              &lt;a href=<span class="string">"&#123;&#123; url_for(tag.path) &#125;&#125;"</span> rel=<span class="string">"tag"</span>&gt; <span class="xml"><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-tag"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span> &#123;&#123; tag.name &#125;&#125;&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">            &#123;%- endfor %&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="问题八：添加站点运行时间"><a href="#问题八：添加站点运行时间" class="headerlink" title="问题八：添加站点运行时间"></a>问题八：添加站点运行时间</h3><p><strong>详细问题：</strong></p>
+<p><strong>问题分析:</strong></p>
+<p><strong>解决方式:</strong></p>
+<h3 id="问题九：文章加密访问"><a href="#问题九：文章加密访问" class="headerlink" title="问题九：文章加密访问"></a>问题九：文章加密访问</h3><p><strong>详细问题：</strong> 给特定的文章加密</p>
+<p><strong>问题分析:</strong></p>
+<p><strong>解决方式:</strong>打开<code>themes-&gt;next-&gt;layout-&gt;_partials-&gt;head.swig</code>文件,在以下位置插入这样一段代码：</p>
+<p><img src= "/img/loading.gif" data-src="https://raw.githubusercontent.com/LDity/Images/master/All_photos/%E6%96%87%E7%AB%A0%E5%AF%86%E7%A0%81%E8%AE%BE%E7%BD%AE.jpg" alt="插入位置"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (prompt(<span class="string">'请输入文章密码'</span>) !== <span class="string">'&#123;&#123; page.password &#125;&#125;'</span>)&#123;</span><br><span class="line">                alert(<span class="string">'密码错误！'</span>);</span><br><span class="line">                history.back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在文章中写成这样</p>
+<p><img src= "/img/loading.gif" data-src="https://raw.githubusercontent.com/LDity/Images/master/All_photos/%E6%96%87%E7%AB%A0%E5%AF%86%E7%A0%81%E8%AE%BE%E7%BD%AE2.jpg" alt=""></p>
+<p>另外 这是解决Typora 上传图片时所可能遇见的问题</p>
+<p>参考连接：<a href="https://zhuanlan.zhihu.com/p/114175770" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/114175770</a></p>
+<h3 id="问题10：文字增加背景色块"><a href="#问题10：文字增加背景色块" class="headerlink" title="问题10：文字增加背景色块"></a>问题10：文字增加背景色块</h3><p><strong>详细问题：</strong>类似官网中给需要选定的文字 增加背景色块，明白文字的内容对应什么 </p>
+<p><strong>问题分析:</strong> </p>
+<p>需要完成的效果 如图所示：<img src= "/img/loading.gif" data-src="https://raw.githubusercontent.com/LDity/Images/master/All_photos/20200413214849.jpg" alt="配置文件背景色块结果"></p>
+<p><strong>解决方式:</strong> 打开<code>themes\next\source\_data\styles.styl</code> ，如果没有就创建。在尾部加入以下代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 颜色块-黄</span></span><br><span class="line">span#inline-yellow &#123;</span><br><span class="line">display:inline;</span><br><span class="line">padding:<span class="number">.2</span>em <span class="number">.6</span>em <span class="number">.3</span>em;</span><br><span class="line">font-size:<span class="number">80</span>%;</span><br><span class="line">font-weight:bold;</span><br><span class="line">line-height:<span class="number">1</span>;</span><br><span class="line">color:#fff;</span><br><span class="line">text-align:center;</span><br><span class="line">white-space:nowrap;</span><br><span class="line">vertical-align:baseline;</span><br><span class="line">border-radius:<span class="number">0</span>;</span><br><span class="line">background-color: #f0ad4e;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 颜色块-绿</span></span><br><span class="line">span#inline-green &#123;</span><br><span class="line">display:inline;</span><br><span class="line">padding:<span class="number">.2</span>em <span class="number">.6</span>em <span class="number">.3</span>em;</span><br><span class="line">font-size:<span class="number">80</span>%;</span><br><span class="line">font-weight:bold;</span><br><span class="line">line-height:<span class="number">1</span>;</span><br><span class="line">color:#fff;</span><br><span class="line">text-align:center;</span><br><span class="line">white-space:nowrap;</span><br><span class="line">vertical-align:baseline;</span><br><span class="line">border-radius:<span class="number">0</span>;</span><br><span class="line">background-color: #5cb85c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 颜色块-蓝</span></span><br><span class="line">span#inline-blue &#123;</span><br><span class="line">display:inline;</span><br><span class="line">padding:<span class="number">.2</span>em <span class="number">.6</span>em <span class="number">.3</span>em;</span><br><span class="line">font-size:<span class="number">80</span>%;</span><br><span class="line">font-weight:bold;</span><br><span class="line">line-height:<span class="number">1</span>;</span><br><span class="line">color:#fff;</span><br><span class="line">text-align:center;</span><br><span class="line">white-space:nowrap;</span><br><span class="line">vertical-align:baseline;</span><br><span class="line">border-radius:<span class="number">0</span>;</span><br><span class="line">background-color: #2780e3;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 颜色块-紫</span></span><br><span class="line">span#inline-purple &#123;</span><br><span class="line">display:inline;</span><br><span class="line">padding:<span class="number">.2</span>em <span class="number">.6</span>em <span class="number">.3</span>em;</span><br><span class="line">font-size:<span class="number">80</span>%;</span><br><span class="line">font-weight:bold;</span><br><span class="line">line-height:<span class="number">1</span>;</span><br><span class="line">color:#fff;</span><br><span class="line">text-align:center;</span><br><span class="line">white-space:nowrap;</span><br><span class="line">vertical-align:baseline;</span><br><span class="line">border-radius:<span class="number">0</span>;</span><br><span class="line">background-color: #9954bb;</span><br><span class="line">&#125;</span><br><span class="line">span#inline-red &#123;</span><br><span class="line">display:inline;</span><br><span class="line">padding:<span class="number">.2</span>em <span class="number">.6</span>em <span class="number">.3</span>em;</span><br><span class="line">font-size:<span class="number">80</span>%;</span><br><span class="line">font-weight:bold;</span><br><span class="line">line-height:<span class="number">1</span>;</span><br><span class="line">color:#fff;</span><br><span class="line">text-align:center;</span><br><span class="line">white-space:nowrap;</span><br><span class="line">vertical-align:baseline;</span><br><span class="line">border-radius:<span class="number">0</span>;</span><br><span class="line">background-color: #d81b1b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在你需要编辑的文章地方。放置如下代码：</p>
+<p><span id="inline-yellow"> 站点配置文件 </span></p>
+<p><span id="inline-blue"> 站点配置文件 </span></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;span id&#x3D;&quot;inline-blue&quot;&gt; 站点配置文件 &lt;&#x2F;span&gt;</span><br><span class="line">&lt;span id&#x3D;&quot;inline-purple&quot;&gt; 主题配置文件 &lt;&#x2F;span&gt;</span><br><span class="line">&lt;span id&#x3D;&quot;inline-yellow&quot;&gt; 站点配置文件 &lt;&#x2F;redspan&gt;</span><br><span class="line">&lt;span id&#x3D;&quot;inline-green&quot;&gt; 主题配置文件 &lt;&#x2F;span&gt;</span><br><span class="line">&lt;span id&#x3D;&quot;inline-red&quot;&gt; 例子 &lt;&#x2F;span&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="问题11：编辑-index-md-组织专题目录"><a href="#问题11：编辑-index-md-组织专题目录" class="headerlink" title="问题11：编辑 index.md 组织专题目录"></a>问题11：编辑 index.md 组织专题目录</h3><p><strong>详细问题：</strong></p>
+<p><strong>问题分析:</strong></p>
+<p><strong>解决方式:</strong>像文章一样编辑 index.md 即可，引用站内文章可以用如下 hexo 语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% post_link post-name post-title %&#125;</span><br></pre></td></tr></table></figure>
+
+<p><em>post_link</em>：为站内文章引用的关键字，照抄就行。</p>
+<p><em>post-name</em>：为你的 md 文件的名字，不带日期。</p>
+<p><em>post-title</em>：给该文章起的链接标题，为空的话就会从文章中提取。</p>
+<h3 id="问题12-：修改Next里面的字体"><a href="#问题12-：修改Next里面的字体" class="headerlink" title="问题12 ：修改Next里面的字体"></a>问题12 ：修改Next里面的字体</h3><p><strong>详细问题:</strong>如何修改Next主题中各个部分中的字体，包括标题，站点，段落等等</p>
+<p><strong>问题分析:</strong> 修改字体无非就是两种方式。第一种用本地的字体，英文还好，就是26个字母，而中文成千上万个字，如果使用本地字体就是导入大量的文件，打开速度会过慢。第二种方式就是利用网络上提供的字体的API，可以达到这个水平。但是这个问题需要访问谷歌，没有科学上网的同志就算了，别乱改了。下面只给出利用Google Font 给出的链接进行操作</p>
+<p><strong>解决方式：</strong></p>
+<p>第一步：打开<code>next\_config.xml</code> 按<code>Ctrl + F</code> 进行查找 <code>font:
+  enable: true</code> 定位到下面的代码：（我已做出修改）</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">font:</span><br><span class="line">  enable: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  # Uri of fonts host, e.g. https://fonts.googleapis.com (Default).</span><br><span class="line">  host: https:<span class="comment">//fonts.googleapis.com</span></span><br><span class="line"></span><br><span class="line">  # Font options:</span><br><span class="line">  # `external: true` will load this font family from `host` above.</span><br><span class="line">  # `family: Times New Roman`. Without any quotes.</span><br><span class="line">  # `size: x.x`. Use `em` as unit. Default: 1 (16px)</span><br><span class="line"></span><br><span class="line">  # Global font settings used for all elements inside &lt;body&gt;.</span><br><span class="line">  global:</span><br><span class="line">    external: <span class="literal">true</span></span><br><span class="line">    family: Noto Serif SC</span><br><span class="line">    size:</span><br><span class="line"></span><br><span class="line">  # Font settings for site title (.site-title).</span><br><span class="line">  title:</span><br><span class="line">    external: <span class="literal">true</span></span><br><span class="line">    family: Liu Jian Mao Cao</span><br><span class="line">    size:</span><br><span class="line"></span><br><span class="line">  # Font settings for headlines (&lt;h1&gt; to &lt;h6&gt;).</span><br><span class="line">  headings:</span><br><span class="line">    external: <span class="literal">true</span></span><br><span class="line">    family:</span><br><span class="line">    size:</span><br><span class="line"></span><br><span class="line">  # Font settings for posts (.post-body).</span><br><span class="line">  posts:</span><br><span class="line">    external: <span class="literal">true</span></span><br><span class="line">    family:</span><br><span class="line"></span><br><span class="line">  # Font settings for &lt;code&gt; and code blocks.</span><br><span class="line">  codes:</span><br><span class="line">    external: <span class="literal">true</span></span><br><span class="line">    family: Source Code Pro</span><br></pre></td></tr></table></figure>
+
+<p> 第二步：对比自己的那部分代码。修改全局变量的global中的family 为 <code>Noto Serif SC</code>，或者是自己去到<a href="https://fonts.googleapis.com" target="_blank" rel="noopener">Google Font</a>去寻找合适的汉字字体。至于其他的变量需要自己去看英文对照修改字体就好。</p>
+<p> 参考链接:<a href="https://guanqr.com/tech/website/web-font-guide/" target="_blank" rel="noopener">修改字体/</a></p>
+<h3 id="问题13：添加音乐"><a href="#问题13：添加音乐" class="headerlink" title="问题13：添加音乐"></a>问题13：添加音乐</h3><p><strong>详细问题</strong>：</p>
+<p><strong>问题分析</strong>:</p>
+<p><strong>解决方式</strong>：</p>
+<p>这里推荐 <a href="https://github.com/MoePlayer/hexo-tag-aplayer" target="_blank" rel="noopener">hexo-tag-aplayer</a>，<a href="https://github.com/MoePlayer/APlayer" target="_blank" rel="noopener">APlayer</a> 播放器的 Hexo 标签插件。安装命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-tag-aplayer --save</span><br></pre></td></tr></table></figure>
+<p>添加文件如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% aplayer &quot;歌曲名&quot; &quot;歌手名&quot; &quot;https:&#x2F;&#x2F;什么什么什么.mp3&quot; &quot;https:&#x2F;&#x2F;封面图.jpg&quot; &quot;lrc:https:&#x2F;&#x2F;歌词.lrc&quot; %&#125;</span><br></pre></td></tr></table></figure>
+
+<p>显示结果：</p>
+
+        <div id="aplayer-qtlThckt" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;width: 30%;">
+            <pre class="aplayer-lrc-content"></pre>
+        </div>
+        <script>
+          var ap = new APlayer({
+            element: document.getElementById("aplayer-qtlThckt"),
+            narrow: false,
+            autoplay: false,
+            showlrc: false,
+            music: {
+              title: "那些年",
+              author: "胡夏",
+              url: "https://res.cloudinary.com/drldihlua/video/upload/v1587008640/胡夏_-_那些年.flac",
+              pic: "https://raw.githubusercontent.com/LDity/Images/master/1.png",
+              lrc: ""
+            }
+          });
+          window.aplayers || (window.aplayers = []);
+          window.aplayers.push(ap);
+        </script>
+
+
+
+<h3 id="问题14：文章阴影和分割线"><a href="#问题14：文章阴影和分割线" class="headerlink" title="问题14：文章阴影和分割线"></a>问题14：文章阴影和分割线</h3><p>详细问题：主页的文章与文章之间的间隔不符合自己心意，没有分割表明这是不同的文章，不易于区分不同的文章</p>
+<p>问题分析</p>
+<p>解决方式：打开<code>themes\next\source\_data\styles.styl</code> ，如果没有就创建。在尾部加入以下代码。</p>
+<p>这一步是设置文章间距和分割线的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.posts-expand &#123;</span><br><span class="line">  .post-eof &#123;</span><br><span class="line">    display: block;</span><br><span class="line">    margin: 70px auto 50px; &#x2F;&#x2F;文章间距</span><br><span class="line">    width: 40%;  &#x2F;&#x2F;分割线长度</span><br><span class="line">    height: 2px;</span><br><span class="line">    background: $grey-light;</span><br><span class="line">    text-align: center;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="问题15：设定文章在首页隐藏"><a href="#问题15：设定文章在首页隐藏" class="headerlink" title="问题15：设定文章在首页隐藏"></a>问题15：设定文章在首页隐藏</h3><p>详细问题：设定一种方式，生成文章不能在首页被看到，却可以在通过特定的连接访问到：</p>
+<p>问题分析：</p>
+<p>解决方式：</p>
+<p>第一步：安装 hexo-hide-posts 插件 <code>npm install hexo-hide-posts --save</code></p>
+<p>第二步：修改站点文件<code>_config.yml</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># hexo-hide-posts</span><br><span class="line">hide_posts:</span><br><span class="line">  # 可以改成其他你喜欢的名字</span><br><span class="line">  filter: hidden</span><br><span class="line">  # 指定你想要传递隐藏文章的 generator，比如让所有隐藏文章在存档页面可见</span><br><span class="line">  # 常见的 generators 有：index, tag, category, archive, sitemap, feed, etc.</span><br><span class="line">  public_generators: []</span><br><span class="line">  # 为隐藏的文章添加 noindex meta 标签，阻止搜索引擎收录</span><br><span class="line">  noindex: true</span><br></pre></td></tr></table></figure>
+
+<p>第三步，在font-matter处制定文章的基本内容，<span id = "inline-blue">例子</span>如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title:  岛屿数量</span><br><span class="line">date: 2020-4-20 18点30分</span><br><span class="line">tags:</span><br><span class="line">- leetcode</span><br><span class="line">categories:</span><br><span class="line">- 幻想世界系列</span><br><span class="line">hidden: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>第四步：可以通过标签的方式进行访问，具体操作看此文章的<strong>问题11</strong></p>
+<p>参考连接：<a href="https://github.com/printempw/hexo-hide-posts/blob/master/README_ZH.md" target="_blank" rel="noopener">Hexo-hide-post 插件</a></p>
+<h3 id="问题16：添加文件夹在首页"><a href="#问题16：添加文件夹在首页" class="headerlink" title="问题16：添加文件夹在首页"></a>问题16：添加文件夹在首页</h3><p>问题解释：想要在hexo 中添加如下效果，也就在首页添加一些选项</p>
+<p>解决方法：</p>
+<p>第一步：</p>
+<p>在source文件夹下创建如下的文件夹，注意看包含了什么文件夹，按照这样的标准来</p>
+<img src= "/img/loading.gif" data-src="https://gitee.com/Ldity/image/raw/master/img/20200630160208.png" alt="image-20200630160207555" style="zoom:80%;" />
+第二步：然后在next主题配置文件下搜索menu，也就是菜单，添加类似如下内容，即可
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">life: /life/ || angllist</span><br></pre></td></tr></table></figure>
+
+<img src= "/img/loading.gif" data-src="https://gitee.com/Ldity/image/raw/master/img/20200630160213.png" alt="image-20200630160100778" style="zoom:80%;" />
+
+<p>第三步：打开<code>next/languages</code>文件夹，修改zh-CN 内容，如下所示</p>
+<img src= "/img/loading.gif" data-src="https://gitee.com/Ldity/image/raw/master/img/20200630163343.png" alt="image-20200630163333117" style="zoom:80%;" />
+
+<p>第四步：最终结果</p>
+<img src= "/img/loading.gif" data-src="https://gitee.com/Ldity/image/raw/master/img/20200630160706.png" alt="image-20200630160705346" style="zoom:80%;" />
+
+<h3 id="问题17：针对问题4进行的优化"><a href="#问题17：针对问题4进行的优化" class="headerlink" title="问题17：针对问题4进行的优化"></a>问题17：针对问题4进行的优化</h3><p>问题解释：使用的fancybox插件，发现在使用过程中，使用<code>![image-20200702152914542](https://gitee.com/Ldity/image/raw/master/img/20200702152952.png)</code>的语法进行载入图片的情况，会显示 底部文字与图片显示过近，因为其中的line-height = 1 所以，不太美观。所以更进一步进行优化，使其行高变宽，更加事宜观看。</p>
+<img src= "/img/loading.gif" data-src="https://gitee.com/Ldity/image/raw/master/img/20200702152952.png" alt="image-20200702152914542"  />
+
+<p>解决方式：</p>
+<p>在 <strong>Hexo 根目录</strong>下，进入（若不存在则创建）<code>source/_data</code> 目录，在该目录下创建 <code>styles.styl</code> 文件，</p>
+<p>然后在其中输入</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.post-body</span> <span class="selector-class">.image-caption</span>,</span><br><span class="line"><span class="selector-class">.post-body</span> <span class="selector-class">.figure</span> <span class="selector-class">.caption</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#999</span>;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">0.875em</span>;</span><br><span class="line">  <span class="attribute">font-weight</span>: bold;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">3</span>;</span><br><span class="line">  <span class="attribute">margin</span>: -<span class="number">20px</span> auto <span class="number">15px</span>;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/Ldity/image/raw/master/img/20200716145152.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/07/16/tools/%E5%8D%9A%E5%AE%A2%E4%BF%AE%E6%94%B9%E7%B3%BB%E5%88%972--%E4%BD%BF%E7%94%A8%E5%9B%BE%E5%BA%8A/"><img class="prev-cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145212.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">使用图床存储图片</div></div></a></div><div class="next-post pull-right"><a href="/2020/07/16/tools/window%E5%B7%A5%E5%85%B7%E7%B3%BB%E5%88%972--%E7%94%A8%E7%9A%84%E9%A1%BA%E6%89%8B%E7%9A%84%E8%BD%AF%E4%BB%B6/"><img class="next-cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716122119.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">用的顺手的软件</div></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/07/16/tools/博客修改系列2--使用图床/" title="使用图床存储图片"><img class="relatedPosts_cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145212.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-16</div><div class="relatedPosts_title">使用图床存储图片</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/16/tools/博客修改系列3--hexo出现的BUG/" title="Hexo 出现的一些BUG"><img class="relatedPosts_cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716122119.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-16</div><div class="relatedPosts_title">Hexo 出现的一些BUG</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/16/tools/博客修改系列4--Hexo部署至阿里云/" title="Hexo 部署到阿里云服务器上"><img class="relatedPosts_cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716122119.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-16</div><div class="relatedPosts_title">Hexo 部署到阿里云服务器上</div></div></a></div><div class="relatedPosts_item"><a href="/2020/07/16/tools/博客修改系列5--自我进行的探索/" title="自我进行的一些探索"><img class="relatedPosts_cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145133.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="far fa-calendar-alt fa-fw"></i> 2020-07-16</div><div class="relatedPosts_title">自我进行的一些探索</div></div></a></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Didi</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script></body></html>

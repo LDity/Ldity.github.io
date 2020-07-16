@@ -1,0 +1,127 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>游戏玩法--红一红三（家乡境内比较流行的娱乐牌类玩法） | 个人空间</title><meta name="description" content="游戏玩法–红一红三（家乡境内比较流行的娱乐牌类玩法） 游戏基本规则：  实际物体：一副扑克中54张牌，除去大小王之后的52张牌作为此类玩法基石 人数要求：要求共有四方，每一方在第一轮发牌结束时都应该拥有13张牌。 牌数定义和基本玩法 最基本的准则一：不同数值的牌，权重大小以4为最小，3为最大，按照 4&lt;5&lt;6&lt;7&lt;8&lt;9&lt;10&lt;J&lt;Q&lt;K&amp;lt"><meta name="author" content="Didi"><meta name="copyright" content="Didi"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://ldity.github.io/2020/01/19/Other/%E6%B8%B8%E6%88%8F%E5%88%B6%E4%BD%9C%E7%B3%BB%E5%88%971--%E6%B8%B8%E6%88%8F%E7%8E%A9%E6%B3%95--%E7%BA%A2%E4%B8%80%E7%BA%A2%E4%B8%89%EF%BC%88%E5%AE%B6%E4%B9%A1%E5%A2%83%E5%86%85%E6%AF%94%E8%BE%83%E6%B5%81%E8%A1%8C%E7%9A%84%E5%A8%B1%E4%B9%90%E7%89%8C%E7%B1%BB%E7%8E%A9%E6%B3%95%EF%BC%89/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="游戏玩法--红一红三（家乡境内比较流行的娱乐牌类玩法）"><meta property="og:url" content="https://ldity.github.io/2020/01/19/Other/%E6%B8%B8%E6%88%8F%E5%88%B6%E4%BD%9C%E7%B3%BB%E5%88%971--%E6%B8%B8%E6%88%8F%E7%8E%A9%E6%B3%95--%E7%BA%A2%E4%B8%80%E7%BA%A2%E4%B8%89%EF%BC%88%E5%AE%B6%E4%B9%A1%E5%A2%83%E5%86%85%E6%AF%94%E8%BE%83%E6%B5%81%E8%A1%8C%E7%9A%84%E5%A8%B1%E4%B9%90%E7%89%8C%E7%B1%BB%E7%8E%A9%E6%B3%95%EF%BC%89/"><meta property="og:site_name" content="个人空间"><meta property="og:description" content="游戏玩法–红一红三（家乡境内比较流行的娱乐牌类玩法） 游戏基本规则：  实际物体：一副扑克中54张牌，除去大小王之后的52张牌作为此类玩法基石 人数要求：要求共有四方，每一方在第一轮发牌结束时都应该拥有13张牌。 牌数定义和基本玩法 最基本的准则一：不同数值的牌，权重大小以4为最小，3为最大，按照 4&lt;5&lt;6&lt;7&lt;8&lt;9&lt;10&lt;J&lt;Q&lt;K&amp;lt"><meta property="og:image" content="https://gitee.com/Ldity/image/raw/master/img/20200716105739.jpg"><meta property="article:published_time" content="2020-01-19T05:08:40.000Z"><meta property="article:modified_time" content="2020-04-22T11:40:55.163Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="prev" title="头像的变化" href="https://ldity.github.io/2020/01/30/Life/%E9%9A%8F%E7%AC%94%E7%B3%BB%E5%88%971--%E5%A4%B4%E5%83%8F%E7%9A%84%E5%8F%98%E5%8C%96/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: false    
+}</script><script>var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: false,
+  postUpdate: '2020-04-22 19:40:55'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img{
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 4.2.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://gitee.com/Ldity/image/raw/master/img/20200702135143.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">101</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">14</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 生平</span></a></div></div></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://gitee.com/Ldity/image/raw/master/img/20200716105739.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">个人空间</a></span><span class="pull-right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 生平</span></a></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">游戏玩法--红一红三（家乡境内比较流行的娱乐牌类玩法）</div></div><div id="post-meta"><div class="meta-firstline"><time class="post-meta__date"><span class="post-meta__date-created" title="发表于 2020-01-19 13:08:40"><i class="far fa-calendar-alt fa-fw"></i> 发表于 2020-01-19</span><span class="post-meta__separator">|</span><span class="post-meta__date-updated" title="更新于 2020-04-22 19:40:55"><i class="fas fa-history fa-fw"></i> 更新于 2020-04-22</span></time><span class="post-meta__categories"><span class="post-meta__separator">|</span><i class="fas fa-inbox fa-fw post-meta__icon"></i><a class="post-meta__categories" href="/categories/%E6%B8%B8%E6%88%8F%E5%88%B6%E4%BD%9C%E7%B3%BB%E5%88%97/">游戏制作系列</a></span></div><div class="meta-secondline"> </div><div class="meta-thirdline"><span class="post-meta-pv-cv"></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><p>游戏玩法–红一红三（家乡境内比较流行的娱乐牌类玩法）</p>
+<p>游戏基本规则：</p>
+<ol>
+<li>实际物体：一副扑克中54张牌，除去大小王之后的52张牌作为此类玩法基石</li>
+<li>人数要求：要求共有四方，每一方在第一轮发牌结束时都应该拥有13张牌。</li>
+<li>牌数定义和基本玩法<ol>
+<li><strong>最基本的准则一</strong>：不同数值的牌，权重大小以4为最小，3为最大，按照 4&lt;5&lt;6&lt;7&lt;8&lt;9&lt;10&lt;J&lt;Q&lt;K&lt;1&lt;2&lt;3 的情况排序。而不同数值中的牌权重大小以花色进行比较，其中黑桃&lt;梅花&lt;方块&lt;红桃。这样子，确定以红桃三为最大，黑桃四为最小的牌色体系。</li>
+<li>基于以上准则，可以得出以下的牌数组合规则：<ol>
+<li>单张：单张权重大小完全以基本准则一为基石，同样为红桃三最大，黑桃四为最小。可以出数字相同的牌进行打击</li>
+<li>对子：数字相同，但花色不同的两张牌为对子。对子的大小同样依赖准则一，区别在于对子的大小只看两张牌中最大的花色。可以出数字相同的牌进行打击。</li>
+<li>三条：数字相同，但花色不同的三张牌为三条。可以单独出，三条的大小同样依赖准则一。</li>
+<li>四条：数字相同，但花色不同的四张牌为四条。不可单独出，四条的大小同样依赖准则一</li>
+<li>五张牌：五张牌的组成有许多种：<ul>
+<li>最低以三为起点，包括起点为三的共计五张数字大小连续的牌统称为A顺子。比如3 4 5 6 7五张牌为顺子。终点最高为1.如10 J Q K1五张牌也为A顺子。A顺子大小的依靠最后一张牌的权重大小进行判定。</li>
+<li>相同花色的任意五张牌组成在一起为B顺子。每一个B顺子的大小由花色（主要），权重最大的单张（次要）决定。</li>
+<li>若花色相同，且牌中数字连续的话为同花顺。同花顺大小由牌的大小（主要），花色（次要）决定，最后一张牌权重大小决定同花顺大小。</li>
+<li>三条可以带两对，四条可以带一个。权重大小由三条和四条的数字权重大小决定。</li>
+<li>其中 A顺子&lt;B顺子&lt;三条带两对&lt;四条带一对&lt;同花顺</li>
+</ul>
+</li>
+<li>阵营划分：拥有红桃一或者红桃三的互为盟友成立队伍A，另外两人为队伍B。</li>
+<li>输赢划分：最先将手中的牌打出去的，即为第一，以此类推。其中队伍里面两个成员出现：第一+第二；或者第一加第三；即为胜利。</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/Ldity/image/raw/master/img/20200716145152.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"/><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2020/01/30/Life/%E9%9A%8F%E7%AC%94%E7%B3%BB%E5%88%971--%E5%A4%B4%E5%83%8F%E7%9A%84%E5%8F%98%E5%8C%96/"><img class="prev-cover" data-src="https://gitee.com/Ldity/image/raw/master/img/20200716145212.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">头像的变化</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Didi</div><div class="framework-info"><span>驱动 </span><a href="https://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script></body></html>
